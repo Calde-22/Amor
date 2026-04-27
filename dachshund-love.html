@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para ti ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #fff9f1;
+      --bg-2: #fdf2e8;
+      --bg-3: #f8e9d9;
+      --dog-main: #7d4b2f;
+      --dog-mid: #936047;
+      --dog-light: #b58564;
+      --dog-shadow: #5d3421;
+      --ear: #6a3b25;
+      --text-main: #4b2e21;
+      --text-sub: #77564a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      scroll-behavior: smooth;
+      font-family: "Inter", sans-serif;
+      color: var(--text-main);
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 10% 20%, #fffdf7 0%, var(--bg-1) 35%, var(--bg-2) 70%, var(--bg-3) 100%);
+      overflow: hidden;
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      color: rgba(212, 106, 130, 0.25);
+      font-size: 10px;
+      animation: floatUp linear infinite;
+      filter: blur(0.2px);
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) scale(0.8);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.6;
+      }
+      80% {
+        opacity: 0.35;
+      }
+      100% {
+        transform: translateY(-120vh) translateX(20px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .scene {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 760px);
+      min-height: min(100vh, 840px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(1.1rem, 2.5vw, 1.8rem);
+      padding: clamp(1.2rem, 3vw, 2.2rem);
+    }
+
+    .dog-wrap {
+      width: min(85vw, 640px);
+      filter: drop-shadow(0 18px 18px rgba(93, 52, 33, 0.12));
+      animation: entrance 1.2s cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .dog {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      animation: gentleBounce 3.2s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .body-group {
+      animation: breathe 3.8s ease-in-out infinite;
+      transform-origin: 45% 55%;
+    }
+
+    .tail {
+      transform-origin: 135px 242px;
+      animation: tailWag 1.05s ease-in-out infinite;
+    }
+
+    .ear {
+      transform-origin: center top;
+      animation: earSwing 2.2s ease-in-out infinite;
+    }
+
+    .eye {
+      animation: blink 5s infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    .paw-front {
+      animation: pawStepFront 2.2s ease-in-out infinite;
+      transform-origin: 460px 333px;
+    }
+
+    .paw-back {
+      animation: pawStepBack 2.2s ease-in-out infinite;
+      transform-origin: 216px 334px;
+    }
+
+    .flower {
+      animation: flowerSway 2.3s ease-in-out infinite;
+      transform-origin: 590px 198px;
+    }
+
+    .message {
+      text-align: center;
+      max-width: 38ch;
+      animation: entrance 1.2s 0.35s cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .message h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.65rem, 3.8vw, 2.6rem);
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: var(--text-main);
+      text-wrap: balance;
+      text-shadow: 0 2px 16px rgba(93, 52, 33, 0.09);
+    }
+
+    .message p {
+      margin-top: 0.8rem;
+      font-size: clamp(0.94rem, 2.1vw, 1.05rem);
+      color: var(--text-sub);
+      font-weight: 500;
+      letter-spacing: 0.15px;
+    }
+
+    @keyframes entrance {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1, 1); }
+      50% { transform: scale(1.012, 0.992); }
+    }
+
+    @keyframes tailWag {
+      0%, 100% { transform: rotate(9deg); }
+      50% { transform: rotate(-8deg); }
+    }
+
+    @keyframes earSwing {
+      0%, 100% { transform: rotate(1deg); }
+      50% { transform: rotate(6deg); }
+    }
+
+    @keyframes blink {
+      0%, 43%, 47%, 100% {
+        transform: scaleY(1);
+      }
+      45% {
+        transform: scaleY(0.1);
+      }
+    }
+
+    @keyframes pawStepFront {
+      0%, 100% { transform: rotate(0deg) translateY(0); }
+      50% { transform: rotate(4deg) translateY(2.2px); }
+    }
+
+    @keyframes pawStepBack {
+      0%, 100% { transform: rotate(0deg) translateY(0); }
+      50% { transform: rotate(-3deg) translateY(2px); }
+    }
+
+    @keyframes flowerSway {
+      0%, 100% { transform: rotate(0deg) translateY(0); }
+      50% { transform: rotate(2.4deg) translateY(-1px); }
+    }
+
+    @media (max-width: 560px) {
+      .scene {
+        min-height: 100dvh;
+      }
+
+      .dog-wrap {
+        width: min(96vw, 540px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <main class="scene">
+    <figure class="dog-wrap" aria-label="Perro salchicha marrón con flor">
+      <svg class="dog" viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="bodyFill" x1="8%" y1="12%" x2="92%" y2="86%">
+            <stop offset="0%" stop-color="#99603c" />
+            <stop offset="48%" stop-color="#86502f" />
+            <stop offset="100%" stop-color="#6e3f26" />
+          </linearGradient>
+          <radialGradient id="bodyGlow" cx="46%" cy="28%" r="66%">
+            <stop offset="0%" stop-color="#bf8a62" stop-opacity="0.65" />
+            <stop offset="100%" stop-color="#bf8a62" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="spot" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#c0804f" />
+            <stop offset="100%" stop-color="#a45f31" />
+          </linearGradient>
+          <radialGradient id="noseShine" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#5f3d2e" />
+            <stop offset="100%" stop-color="#1f140f" />
+          </radialGradient>
+          <radialGradient id="eyeLight" cx="30%" cy="20%" r="80%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="100%" stop-color="#ecf5ff" />
+          </radialGradient>
+          <linearGradient id="rose" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f2a5ba" />
+            <stop offset="100%" stop-color="#cf6d89" />
+          </linearGradient>
+        </defs>
+
+        <ellipse cx="320" cy="363" rx="228" ry="24" fill="rgba(76, 49, 35, 0.18)" />
+
+        <g class="body-group">
+          <path class="tail" d="M136 246 C90 234, 64 197, 62 163 C72 166, 82 181, 98 205 C108 220, 122 234, 140 242 Z"
+                fill="#7a482c" stroke="#111" stroke-width="5.2" stroke-linejoin="round" />
+
+          <path d="M142 248 C172 223, 239 212, 324 216 C391 219, 448 227, 488 241 C503 247, 500 282, 486 305 C463 342, 407 354, 324 356 C244 357, 182 349, 149 336 C126 327, 124 275, 142 248 Z"
+                fill="url(#bodyFill)" stroke="#111" stroke-width="5.2" stroke-linejoin="round" />
+          <path d="M142 248 C172 223, 239 212, 324 216 C391 219, 448 227, 488 241 C503 247, 500 282, 486 305 C463 342, 407 354, 324 356 C244 357, 182 349, 149 336 C126 327, 124 275, 142 248 Z"
+                fill="url(#bodyGlow)" opacity="0.52" />
+
+          <path d="M338 229 C365 226, 396 229, 420 240 C414 257, 400 269, 378 273 C353 277, 333 265, 328 244 Z"
+                fill="url(#spot)" opacity="0.9" />
+          <path d="M222 258 C252 248, 281 248, 309 256 C291 283, 247 286, 222 258 Z"
+                fill="#6f3f25" opacity="0.35" />
+          <path d="M220 237 C290 221, 402 224, 468 244" stroke="#ce9a73" stroke-width="8" stroke-linecap="round" opacity="0.28"/>
+
+          <g class="paw-back">
+            <path d="M182 309 C193 307, 206 311, 214 322 C217 336, 216 352, 209 359 C195 361, 183 359, 173 353 C166 339, 169 318, 182 309 Z"
+                  fill="#7a492d" stroke="#111" stroke-width="5.2" stroke-linejoin="round" />
+            <path d="M174 356 C184 359, 194 359, 204 356" stroke="#111" stroke-width="5.2" stroke-linecap="round"/>
+          </g>
+
+          <g class="paw-back">
+            <path d="M231 308 C242 307, 255 311, 263 322 C266 336, 265 352, 258 359 C245 361, 232 360, 222 353 C216 340, 218 319, 231 308 Z"
+                  fill="#7a492d" stroke="#111" stroke-width="5.2" stroke-linejoin="round" />
+            <path d="M223 356 C233 359, 244 359, 253 356" stroke="#111" stroke-width="5.2" stroke-linecap="round"/>
+          </g>
+
+          <g class="paw-front">
+            <path d="M446 307 C458 306, 472 311, 480 323 C483 338, 482 354, 474 361 C460 363, 447 361, 438 354 C430 340, 433 318, 446 307 Z"
+                  fill="#7a492d" stroke="#111" stroke-width="5.2" stroke-linejoin="round" />
+            <path d="M438 358 C448 361, 458 361, 468 358" stroke="#111" stroke-width="5.2" stroke-linecap="round"/>
+          </g>
+
+          <g class="paw-front">
+            <path d="M491 306 C504 305, 518 310, 526 322 C529 336, 528 353, 521 360 C507 362, 493 361, 484 354 C476 341, 478 317, 491 306 Z"
+                  fill="#7a492d" stroke="#111" stroke-width="5.2" stroke-linejoin="round" />
+            <path d="M483 357 C493 360, 504 360, 514 357" stroke="#111" stroke-width="5.2" stroke-linecap="round"/>
+          </g>
+        </g>
+
+        <g>
+          <path d="M458 164 C500 150, 566 152, 598 170 C598 203, 567 229, 525 234 C505 244, 486 250, 461 251 C439 250, 419 239, 409 221 C404 198, 420 174, 458 164 Z"
+                fill="url(#bodyFill)" stroke="#111" stroke-width="5.2" stroke-linejoin="round" />
+
+          <path d="M474 179 C492 171, 528 170, 547 176 C544 190, 534 198, 518 201 C503 204, 484 198, 474 179 Z"
+                fill="url(#spot)" />
+
+          <path class="ear" d="M448 183 C422 198, 412 238, 424 276 C440 291, 463 294, 476 277 C480 247, 476 211, 463 188 Z"
+                fill="#84502f" stroke="#111" stroke-width="5.2" stroke-linejoin="round" />
+
+          <ellipse class="eye" cx="509" cy="175" rx="8.1" ry="9.1" fill="#151515" />
+          <circle cx="511.8" cy="172.3" r="2.4" fill="url(#eyeLight)" />
+          <path d="M516 207 C533 216, 556 216, 575 205" stroke="#111" stroke-width="5.2" stroke-linecap="round" fill="none"/>
+
+          <ellipse cx="597" cy="176" rx="10.1" ry="9.6" fill="url(#noseShine)" />
+          <path d="M454 214 C456 244, 459 262, 462 278" stroke="#111" stroke-width="5.2" stroke-linecap="round" />
+        </g>
+
+        <g class="flower">
+          <path d="M586 200 C603 194, 620 194, 633 201 C620 206, 603 208, 586 204 Z" fill="#6f9a60" stroke="#2f4a2b" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M633 200 C644 191, 659 191, 666 201 C659 210, 645 211, 633 202 Z" fill="url(#rose)" stroke="#8f4860" stroke-width="2"/>
+          <path d="M639 200 C643 196, 650 196, 654 200 C650 204, 643 205, 639 200 Z" fill="#f7cad8" opacity="0.8" />
+        </g>
+
+        <g opacity="0.34">
+          <path d="M180 242 C249 224, 392 226, 472 248" stroke="#d09f77" stroke-width="9" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </figure>
+
+    <section class="message">
+      <h1>Para ti, porque haces mis días mejores ❤️</h1>
+      <p>Con amor, ternura y una flor en cada paso.</p>
+    </section>
+  </main>
+
+  <script>
+    const container = document.getElementById("particles");
+    const symbols = ["❤", "✿", "•"];
+    const count = window.matchMedia("(max-width: 700px)").matches ? 16 : 24;
+
+    for (let i = 0; i < count; i += 1) {
+      const s = document.createElement("span");
+      s.className = "particle";
+      s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      s.style.left = `${Math.random() * 100}%`;
+      s.style.bottom = `${-8 - Math.random() * 25}vh`;
+      s.style.animationDuration = `${13 + Math.random() * 11}s`;
+      s.style.animationDelay = `${-Math.random() * 20}s`;
+      s.style.opacity = `${0.18 + Math.random() * 0.4}`;
+      s.style.fontSize = `${8 + Math.random() * 8}px`;
+      container.appendChild(s);
+    }
+  </script>
+</body>
+</html>
